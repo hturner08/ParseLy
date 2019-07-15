@@ -7,17 +7,23 @@ import time
 def readInt(str):
     if "E" in str:
         base = float(str[:str.index("E")])
-        return base**float(str[str.index("E")+1:])
+        ex = float(str[str.index("E")+1:])
+        if ex is not 0:
+            return base*10**ex
+        return base
     return float(str)
 
-def read_data_line(str, origin, vec, system):
+def read_data_line(str, origin, vec, system,particle):
     return_data = []
     str_data = str.split()
+    shift = 0
+    if particle is "photon":
+        shift = 1
     for value in str_data:
         return_data.append(readInt(value))
     if(system == 1):
-        copy = return_data[:]
-        theta_0 = math.atan(vec[2]/vec[0])
+        copy = return_data[shift:]
+        theta_0 = math.atan(abs(vec[2])/abs(vec[0]))
         if vec[0] < 0:
             sign = 1
         else:
@@ -48,9 +54,12 @@ def get_region_data(regions):
     particle = "neutron"
     real_data= False
     for region in regions:
+        origin = [0,0,0]
         for line in region:
             if real_data and line:
-                parsed_data = read_data_line(line, origin,vec,system)
+                print(origin)
+                print(vec)
+                parsed_data = read_data_line(line, origin,vec,system,particle)
                 region_number.append(current_region)
                 particles.append(particle)
                 x.append(parsed_data[0])
