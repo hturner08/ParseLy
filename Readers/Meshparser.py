@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import math
 import time
+import csv
 
 def readInt(str):
     if "E" in str:
@@ -19,12 +20,13 @@ def read_data_line(str, origin, vec, system,particle):
     shift = 0
     if particle is "photon":
         shift = 1
-    for value in str_data:
-        return_data.append(readInt(value))
+    for x in range(len(str_data)-shift):
+        return_data.append(readInt(str_data[x+shift]))
     if(system == 1):
-        if return_data[shift] < 105 or return_data[shift+2] > .5: #Only get larger radius
+        print(return_data)
+        if return_data[0] < 105 or return_data[2] > .5: #Only get larger radius
             return None
-        copy = return_data[shift:]
+        copy = return_data[:]
         theta_0 = math.atan(vec[2]/vec[0])
         if(vec[0] < 0):
             theta_0 += math.pi
@@ -87,6 +89,7 @@ def get_region_data(regions):
                 real_data = True
                 system = 1
         real_data=False
+        system=0
     return pd.DataFrame({'Region':region_number,
                         'Particle':particles,
                         'X':x,
@@ -117,9 +120,9 @@ def main():
     meshtalFile = open(args.file,"r")
     time1 = time.perf_counter()
     data_frame = get_region_data(split_regions(meshtalFile))
-    data_frame.to_csv(r"output.txt",sep=' ', index=False, header=True)
+    data_frame.to_csv(r"output.txt",sep = ' ', index=False, header=True)
     print("The process took " + str(time.perf_counter()-time1) + " " + "seconds")
-    # print(data_frame)
+    print(data_frame.to_string())
 
 
 if __name__ == '__main__':
