@@ -22,14 +22,12 @@ def read_data_line(str, origin, vec, system,particle):
     for value in str_data:
         return_data.append(readInt(value))
     if(system == 1):
-        if return_data[shift] < 105: #Only get larger radius
+        if return_data[shift] < 105 or return_data[shift+2] > .5: #Only get larger radius
             return None
         copy = return_data[shift:]
         theta_0 = math.atan(vec[2]/vec[0])
         if(vec[0] < 0):
             theta_0 += math.pi
-        print(theta_0)
-        print(vec)
         if vec[0] < 0:
             sign = 1
         else:
@@ -49,6 +47,7 @@ def get_region_data(regions):
     x = []
     y = []
     z = []
+    az = []
     heat = []
     error = []
     #coordinate system conversions
@@ -70,6 +69,7 @@ def get_region_data(regions):
                     x.append(parsed_data[0])
                     y.append(parsed_data[1])
                     z.append(parsed_data[2])
+                    az.append(math.atan(parsed_data[2]/parsed_data[0]))
                     heat.append(parsed_data[3])
                     error.append(parsed_data[4])
             elif "Mesh Tally Number" in line:
@@ -92,6 +92,7 @@ def get_region_data(regions):
                         'X':x,
                         'Y':y,
                         'Z':z,
+                        'Azimuth':az,
                         'Heat':heat,
                         'Error':error})
 
@@ -116,7 +117,7 @@ def main():
     meshtalFile = open(args.file,"r")
     time1 = time.perf_counter()
     data_frame = get_region_data(split_regions(meshtalFile))
-    data_frame.to_csv(r'np.txt',sep=' ', index=False, header=True)
+    data_frame.to_csv(r"output.txt",sep=' ', index=False, header=True)
     print("The process took " + str(time.perf_counter()-time1) + " " + "seconds")
     # print(data_frame)
 
