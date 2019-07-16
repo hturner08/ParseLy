@@ -22,15 +22,21 @@ def read_data_line(str, origin, vec, system,particle):
     for value in str_data:
         return_data.append(readInt(value))
     if(system == 1):
+        if return_data[shift] < 105: #Only get larger radius
+            return None
         copy = return_data[shift:]
-        theta_0 = math.atan(abs(vec[2])/abs(vec[0]))
+        theta_0 = math.atan(vec[2]/vec[0])
+        if(vec[0] < 0):
+            theta_0 += math.pi
+        print(theta_0)
+        print(vec)
         if vec[0] < 0:
             sign = 1
         else:
             sign = -1
         return_data[0] = origin[0] + copy[0]*math.cos(sign*copy[2]*2*math.pi + theta_0)
         return_data[1] = copy[1]
-        return_data[2] = origin[2] - sign * copy[0]*math.sin(-sign*copy[2]*2*math.pi + theta_0)
+        return_data[2] = origin[2] - sign * copy[0]*math.sin(sign*copy[2]*2*math.pi + theta_0)
         return_data[3] = copy[3]
         return_data[4] = copy[4]
     return return_data
@@ -57,16 +63,15 @@ def get_region_data(regions):
         origin = [0,0,0]
         for line in region:
             if real_data and line:
-                print(origin)
-                print(vec)
                 parsed_data = read_data_line(line, origin,vec,system,particle)
-                region_number.append(current_region)
-                particles.append(particle)
-                x.append(parsed_data[0])
-                y.append(parsed_data[1])
-                z.append(parsed_data[2])
-                heat.append(parsed_data[3])
-                error.append(parsed_data[4])
+                if parsed_data is not None:
+                    region_number.append(current_region)
+                    particles.append(particle)
+                    x.append(parsed_data[0])
+                    y.append(parsed_data[1])
+                    z.append(parsed_data[2])
+                    heat.append(parsed_data[3])
+                    error.append(parsed_data[4])
             elif "Mesh Tally Number" in line:
                 current_region = line[17:].replace(" ","")
             elif "photon" in line:
