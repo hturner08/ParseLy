@@ -90,6 +90,7 @@ def get_region_data(regions):
                 system = 1
         real_data=False
         system=0
+        particle = "neutron"
     return pd.DataFrame({'Region':region_number,
                         'Particle':particles,
                         'X':x,

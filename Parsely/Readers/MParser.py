@@ -8,10 +8,8 @@ import csv
 class MParser:
     def __init__(self,file):
         self.file = open(file,"r")
+        self.get_region_data(self.split_regions(self.file))
 
-    def parse(self):
-        self.data_frame = self.get_region_data(split_regions(self.file))
-        return self.data_frame
 ##Individual Parsing Functions
     def read_int(self,str):
         if "E" in str:
@@ -36,9 +34,9 @@ class MParser:
         if particle is "photon":
             shift = 1
         for x in range(len(str_data)-shift):
-            return_data.append(readInt(str_data[x+shift]))
+            return_data.append(self.read_int(str_data[x+shift]))
+        #FIX SOON
         if(system == 1):
-            print(return_data)
             if return_data[0] < 105 or return_data[2] > .5: #Only get larger radius
                 return None
             copy = return_data[:]
@@ -61,14 +59,6 @@ class MParser:
     def get_region_data(self, regions):
         region_data = []
         #columns
-        region_number = []
-        particles = []
-        x = []
-        y = []
-        z = []
-        az = []
-        heat = []
-        error = []
         #coordinate system conversions
         origin = [0,0,0]
         vec = [0,0,0]
@@ -81,7 +71,7 @@ class MParser:
             origin = [0,0,0]
             for line in region:
                 if real_data and line:
-                    parsed_data = read_data_line(line, origin,vec,system,particle)
+                    parsed_data = self.read_data_line(line, origin,vec,system,particle)
                     if parsed_data is not None:
                         region_number.append(current_region)
                         particles.append(particle)
@@ -98,8 +88,8 @@ class MParser:
                 elif "origin at " in line:
                     str_coords = line.split()
                     for coord in range(3):
-                        origin[coord] = readInt(str_coords[coord+2])
-                        vec[coord] = readInt(str_coords[coord+13])
+                        origin[coord] = self.read_int(str_coords[coord+2])
+                        vec[coord] = self.read_int(str_coords[coord+13])
                 elif ("X" in line) and ("Y" in line) and ("Z" in line):
                     real_data = True
                 elif ("R" in line) and ("Z" in line) and ("Th" in line):
@@ -107,7 +97,8 @@ class MParser:
                     system = 1
             real_data=False
             system=0
-        return pd.DataFrame({'Region':region_number,
+            particle = "neutron"
+        self.data_frame = pd.DataFrame({'Region':region_number,
                             'Particle':particles,
                             'X':x,
                             'Y':y,
@@ -126,10 +117,6 @@ class MParser:
             else:
                 regions[current].append(line.strip())
         return regions
-
-#Write functions
-    def to_csv(self,file, sep, index, header):
-        return self.data_frame.to_csv(file,sep=sep,index=index,header=header)
 
 """Testing"""
 def main():

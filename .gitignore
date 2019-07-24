@@ -1,2 +1,6 @@
 *.txt
 !requirements.txt
+*.ipynb
+*.ipynb_checkpoints
+*.meshtal
+*.mt
