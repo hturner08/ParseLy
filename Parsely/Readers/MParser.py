@@ -6,9 +6,20 @@ import time
 import csv
 
 class MParser:
-    def __init__(self,file):
-        self.file = open(file,"r")
-        self.get_region_data(self.split_regions(self.file))
+    def __init__(self,files):
+        if isinstance(files,list):
+            for file in files:
+                try:
+                    self.file = open(file,"r")
+                    self.get_region_data(self.split_regions(self.file))
+                except(Error):
+                    print("Improper file name/type")
+        else:
+            try:
+                self.file = open(file,"r")
+                self.get_region_data(self.split_regions(self.file))
+            except(Error):
+                print("Improper file name/type")
 
 ##Individual Parsing Functions
     def read_int(self,str):
@@ -98,7 +109,7 @@ class MParser:
             real_data=False
             system=0
             particle = "neutron"
-        self.data_frame = pd.DataFrame({'Region':region_number,
+        add = pd.DataFrame({'Region':region_number,
                             'Particle':particles,
                             'X':x,
                             'Y':y,
@@ -106,6 +117,10 @@ class MParser:
                             'Azimuth':az,
                             'Heat':heat,
                             'Error':error})
+        if self.data_frame:
+            self.data_frame = pd.concat([self.data_frame,add]).reset_index(drop=True)
+        else:
+            self.data_frame = add
 
     def split_regions(self, file):
         current = 0
