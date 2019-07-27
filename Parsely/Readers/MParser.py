@@ -11,15 +11,15 @@ class MParser:
             for file in files:
                 try:
                     self.file = open(file,"r")
-                    self.get_region_data(self.file)
-                except(Error):
+                    self.get_region_data()
+                except IOError:
                     print("Improper file name/type")
         else:
             try:
-                self.file = open(file,"r")
-                self.get_region_data(self.file)
-            except(Error):
+                self.file = open(files,"r")
+            except IOError:
                 print("Improper file name/type")
+            self.get_region_data()
 
 ##Individual Parsing Functions
     def read_int(self,str):
@@ -32,11 +32,8 @@ class MParser:
                 raise
             if ex is not 0:
                 return base*10**ex
-            try:
-                return float(str)
-            except(Error):
-                print("Invalid string, could not read number")
-                raise
+        return float(str)
+
 
     def read_data_line(self, str, origin, vec, system,particle):
         return_data = []
@@ -77,9 +74,18 @@ class MParser:
         system = 0 #cartesion = 0, polar = 1
         particle = "neutron"
         real_data = False
+        x = []
+        particles = []
+        y = []
+        z = []
+        az = []
+        heat = []
+        error = []
+        region_number = []
         for line in self.file.readlines():
             if "Mesh Tally Number" in line:
-                current_region = line[17:].replace(" ","")
+                current_region = line[18:].replace(" ","")
+                current_region = current_region.replace("\n", "")
                 origin = [0,0,0]
                 real_data=False
                 system=0
@@ -87,7 +93,7 @@ class MParser:
             else:
                 if real_data and line:
                     parsed_data = self.read_data_line(line, origin,vec,system,particle)
-                    if parsed_data is not None:
+                    if parsed_data is not None and len(parsed_data) > 0:
                         region_number.append(current_region)
                         particles.append(particle)
                         x.append(parsed_data[0])
@@ -116,14 +122,16 @@ class MParser:
                             'Azimuth':az,
                             'Heat':heat,
                             'Error':error})
-        if self.data_frame:
+        try:
             self.data_frame = pd.concat([self.data_frame,add]).reset_index(drop=True)
-        else:
+        except:
             self.data_frame = add
 
 
 """Testing"""
 def main():
+    parser = MParser("Para-013.mt")
+    parser.data_frame.to_csv("output.txt")
     print("Why is this the main?")
 
 if __name__ == '__main__':
