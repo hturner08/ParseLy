@@ -11,13 +11,13 @@ class MParser:
             for file in files:
                 try:
                     self.file = open(file,"r")
-                    self.get_region_data(self.split_regions(self.file))
+                    self.get_region_data(self.file)
                 except(Error):
                     print("Improper file name/type")
         else:
             try:
                 self.file = open(file,"r")
-                self.get_region_data(self.split_regions(self.file))
+                self.get_region_data(self.file)
             except(Error):
                 print("Improper file name/type")
 
@@ -67,9 +67,8 @@ class MParser:
 
 
 #Region Functions
-    def get_region_data(self, regions):
+    def get_region_data(self):
         region_data = []
-        #columns
         #coordinate system conversions
         origin = [0,0,0]
         vec = [0,0,0]
@@ -77,10 +76,15 @@ class MParser:
         current_region = 0
         system = 0 #cartesion = 0, polar = 1
         particle = "neutron"
-        real_data= False
-        for region in regions:
-            origin = [0,0,0]
-            for line in region:
+        real_data = False
+        for line in self.file.readlines():
+            if "Mesh Tally Number" in line:
+                current_region = line[17:].replace(" ","")
+                origin = [0,0,0]
+                real_data=False
+                system=0
+                particle = "neutron"
+            else:
                 if real_data and line:
                     parsed_data = self.read_data_line(line, origin,vec,system,particle)
                     if parsed_data is not None:
@@ -92,8 +96,6 @@ class MParser:
                         az.append(math.atan(parsed_data[2]/parsed_data[0]))
                         heat.append(parsed_data[3])
                         error.append(parsed_data[4])
-                elif "Mesh Tally Number" in line:
-                    current_region = line[17:].replace(" ","")
                 elif "photon" in line:
                     particle = "photon"
                 elif "origin at " in line:
@@ -106,9 +108,6 @@ class MParser:
                 elif ("R" in line) and ("Z" in line) and ("Th" in line):
                     real_data = True
                     system = 1
-            real_data=False
-            system=0
-            particle = "neutron"
         add = pd.DataFrame({'Region':region_number,
                             'Particle':particles,
                             'X':x,
@@ -122,16 +121,6 @@ class MParser:
         else:
             self.data_frame = add
 
-    def split_regions(self, file):
-        current = 0
-        regions = [[]]
-        for line in file.readlines():
-            if("Mesh Tally Number" in line):
-                regions.append([line.strip()])
-                current+=1
-            else:
-                regions[current].append(line.strip())
-        return regions
 
 """Testing"""
 def main():
