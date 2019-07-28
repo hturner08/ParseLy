@@ -1,5 +1,5 @@
 import pytest
-from Parsely import MParser
+from .. import Parsely
 
 class MParserTest(TestCase):
     def create_parser(self):
