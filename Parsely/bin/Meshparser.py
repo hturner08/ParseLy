@@ -4,7 +4,9 @@ import pandas as pd
 import math
 import time
 import csv
-
+#####################
+#Python 3.7         #
+#####################
 class MParser:
     def __init__(self,files):
         if isinstance(files,list):
@@ -137,12 +139,15 @@ def get_options(filename):
 def main():
     parser = argparse.ArgumentParser(description=
     'Convert meshtal file to format readable by VisIT')
-    parser.add_argument("--f",help="Specify path to file you want to convert")
-    parser.add_argument("--e",help="Specify txt files with ")
-    parser.add_argument("--o",help="Specify output file name",default="output.txt")
+    parser.add_argument("-f",help="Specify path to file you want to convert")
+    parser.add_argument("-e",help="Specify txt files for region numbers")
+    parser.add_argument("-o",help="Specify output file name",default="output.txt")
     args = parser.parse_args()
     time1 = time.perf_counter()
     parser = MParser(args.f)
+    for region in parser.data_frame["Region"].unique():
+        print("Region:" + " "+ region)
+        print(parser.data_frame.loc[parser.data_frame["Region"]==region].describe())
     if args.e:
         parser.data_frame[parser.data_frame['Region'].isin(get_options(args.e))].to_csv(args.o,sep = ' ', index=False, header=False)
     else:
