@@ -132,7 +132,7 @@ class MParser:
 def main():
     parser = MParser("Para-013.mt")
     parser.data_frame.to_csv("output.txt")
-    print("Why is this the main?")
+    print("This should not be main.")
 
 if __name__ == '__main__':
     main()
