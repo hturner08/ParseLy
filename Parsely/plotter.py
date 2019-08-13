@@ -15,9 +15,9 @@ class Plotter:
             p.var3="var0" + str(coords[2])
         if coords[3]:
             p.var4="var0" + str(coords[3])
-        #Role
-        p.var1Role=0
-        p.var2Role=1
+        #Role Variable Roles take intergers as inputs, not strings
+        p.var1Role= 0
+        p.var2Role = 1
         p.var3Role = 2
         p.var4Role = 3
         p.scaleCube = 0
@@ -35,16 +35,26 @@ class Plotter:
         while(stay):
             print(count)
             count+=1
-    def surfacePlot(self):
-        print visit.PlotPlugins()
-        plot = visit.AddPlot("Contour","var03")
-        p = visit.IsosurfaceAttributes()
-        print p.contourNLevels
+    def surfacePlot(self,stay=False):
+        p = visit.PseudocolorAttributes()
+        q=visit.ResampleAttributes()
+        r = visit.IsosurfaceAttributes()
+        q.samplesX = 10
+        q.samplesY = 10
+        q.samplesZ = 10
+        r.contourNLevels = 10
+        plot = visit.AddPlot("Pseudocolor","Heat")
+        visit.AddOperator("Resample")
+        # visit.AddOperator("Isosurface")
+        visit.SetPlotOptions(p)
         visit.DrawPlots()
+        count = 0
+        while(stay):
+            count+=1
 
 def main():
-    plot = Plotter(r"C:\Users\Herbert Turner\Documents\SparcCode\MeshtalParser\Parsely\bin\output2.txt")
-    plot.scatterPlot([0,1,2,3],"hot",5,False)
-    plot.surfacePlot()
+    plot = Plotter(r"C:\Users\Herbert Turner\Documents\SparcCode\MeshtalParser\Examples\split2.3D")
+    plot.scatterPlot([0,1,2,3],"hot",5,True)
+    plot.surfacePlot(True)
 if __name__ == '__main__':
     main()
