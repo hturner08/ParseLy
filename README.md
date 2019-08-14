@@ -23,12 +23,10 @@ Install the dependencies
 
     pip install pandas
     pip install numpy
-    #Note: If you are using a conda environment
-    you might need to try python -m pip install Parsely
 
 Build and install the library
 
-    pip install Parsely
+    pip install /path/to/Parsely
 
 ## Usage
 You can now use and run the scripts found in the bin folder `cd bin`. Run python <script_name> -h for more instructions on each script.
