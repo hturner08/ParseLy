@@ -3,7 +3,14 @@
 Parsely is library for parsing meshtal files outputed by MCNP and visualizing the
 data in VisIt.
 ## Installation Instructions
-Make sure you are running an environment with python 2.7. The VisIt library is not compatible with Python 3
+### Pre-installation
+Besides installing VisIT, sure you are running an environment with python 2.7. The VisIt library is not compatible with Python 3.
+
+[Downloading Anaconda](https://www.anaconda.com/distribution/)
+
+[Download Miniconda](https://docs.conda.io/en/latest/miniconda.html) -Essentially empty conda system installer
+
+[Instructions](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/) for creating environment using Anaconda/Miniconda
 
 Clone the library and navigate to the folder
 
@@ -22,7 +29,7 @@ Build and install the library
     pip install Parsely
 
 ## Usage
-You can now use and run the scripts found in the bin folder. Run python <script_name> -h for more instructions on each script.
+You can now use and run the scripts found in the bin folder `cd bin`. Run python <script_name> -h for more instructions on each script.
 
 ## Documentation
 Documentation can be found [here](https://github.com/hturner08)
