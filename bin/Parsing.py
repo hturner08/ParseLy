@@ -7,7 +7,7 @@ import csv
 import sys
 sys.path.append(r"C:\Program Files\LLNL\VisIt 3.0.0\lib\site-packages")
 sys.path.append('..')
-from Parsely.MParser import *
+from src.MParser import *
 #####################
 #Python 2.7         #
 #####################
@@ -27,6 +27,8 @@ def main():
         parser.data_frame[parser.data_frame['Region'].isin(get_options(args.e))].to_csv(args.o,sep = ' ', index=False, header=False)
     else:
         parser.data_frame.to_csv(args.o,sep = ' ', index=False, header=False)
+    k = args.o.split(".")
+    parser.to_point3D(str(k[0]+".3D"))
     print("The process took " + str(time.clock()-time1) + " " + "seconds")
 
 if __name__ == '__main__':
