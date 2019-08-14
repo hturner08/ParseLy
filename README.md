@@ -10,7 +10,7 @@ Besides installing VisIT, sure you are running an environment with python 2.7. T
 Or
 [Download Miniconda](https://docs.conda.io/en/latest/miniconda.html)
 
-[Instructions](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/) for creating environment using Anaconda/Miniconda
+[Instructions](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/) for creating environment using Anaconda/Miniconda. Reminder: To activate environment type `activate envname`.
 
 ### Building ParseLy
 
