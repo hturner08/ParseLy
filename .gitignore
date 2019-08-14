@@ -5,3 +5,5 @@
 *.meshtal
 *.mt
 *.pyc
+ParseLy.egg-info
+*.gz

@@ -1,5 +1,5 @@
 import sys#WHY WONT YOU FUCKING WORK
-sys.path.append(r"C:\Program Files\LLNL\VisIt 3.0.0\lib\site-packages")
+#sys.path.append(r"C:\Program Files\LLNL\VisIt 3.0.0\lib\site-packages")
 import visit
 import time
 class Plotter:

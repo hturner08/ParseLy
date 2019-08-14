@@ -1,14 +1,13 @@
 from setuptools import setup, find_packages
 
 setup(name='ParseLy',
-      version='0.1',
+      version='0.2',
       description='Generic Data Parser and Plotter for VisIt',
       long_description='Currently only supports meshtal files',
       classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2.7',
-        'Topic :: Data Processing',
       ],
       keywords='data, mesh',
       url='http://github.com/hturner08/Parsely',
@@ -17,7 +16,6 @@ setup(name='ParseLy',
       license='MIT',
       packages=find_packages(),
       install_requires=[
-          'markdown',
           'pandas',
           'setuptools',
           'numpy',
