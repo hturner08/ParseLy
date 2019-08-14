@@ -7,10 +7,12 @@ data in VisIt.
 Besides installing VisIT, sure you are running an environment with python 2.7. The VisIt library is not compatible with Python 3.
 
 [Downloading Anaconda](https://www.anaconda.com/distribution/)
-
-[Download Miniconda](https://docs.conda.io/en/latest/miniconda.html) -Essentially empty conda system installer
+Or
+[Download Miniconda](https://docs.conda.io/en/latest/miniconda.html)
 
 [Instructions](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/) for creating environment using Anaconda/Miniconda
+
+### Building ParseLy
 
 Clone the library and navigate to the folder
 
