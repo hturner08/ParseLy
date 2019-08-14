@@ -1,6 +1,6 @@
 *.txt
 !requirements.txt
-!para-013.mt
+!Examples\Para-013.mt
 *.ipynb
 *.ipynb_checkpoints
 *.meshtal
