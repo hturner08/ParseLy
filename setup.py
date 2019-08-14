@@ -2,12 +2,12 @@ from setuptools import setup, find_packages
 
 setup(name='ParseLy',
       version='0.1',
-      description='Generic Data Parser',
+      description='Generic Data Parser and Plotter for VisIt',
       long_description='Currently only supports meshtal files',
       classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 2.7',
         'Topic :: Data Processing',
       ],
       keywords='data, mesh',

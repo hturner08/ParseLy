@@ -1,6 +1,11 @@
 import sys
+import argparse
+import time
 sys.path.append('..')
-from .. import plotter
+from Parsely import plotter as plt
+#####################
+#Python 2.7         #
+#####################
 def main():
     parser = argparse.ArgumentParser(description=
     'Pseudocolor and Isosurface plots of data')
@@ -8,11 +13,13 @@ def main():
     # parser.add_argument("-e",help="Specify txt files for region numbers")
     # parser.add_argument("-o",help="Specify output file name",default="output.txt")
     args = parser.parse_args()
-    time1 = time.perf_counter()
-    plot = Plotter(args.f) #Example:r"C:\Users\Herbert Turner\Documents\SparcCode\MeshtalParser\Examples\split2.3D"
-    plot.scatterPlot([0,1,2,3],"hot",5,True)
-    plot.surfacePlot(True)
-    print("The process took " + str(time.perf_counter()-time1) + " " + "seconds")
+    time1 = time.clock()
+    plot = plt.Plotter(args.f) #Example:r"C:\Users\Herbert Turner\Documents\SparcCode\MeshtalParser\Examples\split2.3D"
+    img1 = plot.scatterPlot(["X","Y","Z","Heat"],"hot",5,False)
+    img2 = plot.surfacePlot(stay=True)
+    print("The process took " + str(time.clock()-time1) + " " + "seconds")
+    print(img1)
+    print(img2)
 
 if __name__ == '__main__':
     main()

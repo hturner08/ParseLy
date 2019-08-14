@@ -126,12 +126,22 @@ class MParser:
             self.data_frame = pd.concat([self.data_frame,add]).reset_index(drop=True)
         except:
             self.data_frame = add
+    def to_point3D(name):
+        parser.data_frame.to_csv(name,index=False,header=True,columns=["X","Y","Z","Heat"],sep= " ")
 
+    def get_options(filename):
+        options = []
+        with open(filename,"r") as file:
+            for line in file.readlines():
+                for region in line.split():
+                    options.append(region)
+        return options
 
 """Testing"""
 def main():
     parser = MParser("Para-013.mt")
     parser.data_frame.to_csv("output.txt")
+    parser.to_point3D("output.3D")
     print("This should not be main.")
 
 if __name__ == '__main__':
