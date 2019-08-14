@@ -29,7 +29,7 @@ Build and install the library
     pip install /path/to/Parsely
 
 ## Usage
-You can now use and run the scripts found in the bin folder `cd bin`. Run python <script_name> -h for more instructions on each script.
+You can now use and run the scripts found in the bin folder `cd bin`. Run `python <script_name> -h` for more instructions on each script.
 
 ## Documentation
 Documentation can be found [here](https://github.com/hturner08)
