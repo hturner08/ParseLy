@@ -5,6 +5,7 @@ import math
 import time
 import csv
 import sys
+sys.path.append(r"C:\Program Files\LLNL\VisIt 3.0.0\lib\site-packages")
 sys.path.append('..')
 from Parsely.MParser import *
 #####################

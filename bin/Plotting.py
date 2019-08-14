@@ -2,7 +2,7 @@ import sys
 import argparse
 import time
 sys.path.append(r"C:\Program Files\LLNL\VisIt 3.0.0\lib\site-packages")
-# sys.path.append('..')
+sys.path.append('..')
 from Parsely import plotter as plt
 #####################
 #Python 2.7         #
