@@ -1,7 +1,3 @@
-# ParseLy
-## Description
-Parsely is library for parsing meshtal files outputed by MCNP and visualizing the
-data in VisIt.
 ## Installation Instructions
 ### Pre-installation
 Besides installing VisIT, sure you are running an environment with python 2.7. The VisIt library is not compatible with Python 3.
