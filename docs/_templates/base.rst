@@ -2,8 +2,8 @@
    :maxdepth: 2
    :glob:
 
-   Installation/
-   QuickStart/
+   Installation
+   QuickStart
    Developer's Guide/
    Code Documentation/
    Support
