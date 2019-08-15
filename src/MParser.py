@@ -1,9 +1,5 @@
-import argparse
-import numpy as np
 import pandas as pd
 import math
-import time
-import csv
 
 class MParser:
     def __init__(self,files):
@@ -21,13 +17,13 @@ class MParser:
                 print("Improper file name/type")
             self.get_region_data()
 
-##Individual Parsing Functions
+# Individual Parsing Functions
     def read_int(self,str):
         if "E" in str:
             try:
                 base = float(str[:str.index("E")])
                 ex = float(str[str.index("E")+1:])
-            except(Error):
+            except(TypeError):
                 print("Invalid string, could not read number")
                 raise
             if ex is not 0:
@@ -63,7 +59,7 @@ class MParser:
         return return_data
 
 
-#Region Functions
+# Region Functions
     def get_region_data(self):
         region_data = []
         #coordinate system conversions
@@ -114,14 +110,14 @@ class MParser:
                 elif ("R" in line) and ("Z" in line) and ("Th" in line):
                     real_data = True
                     system = 1
-        add = pd.DataFrame({'Region':region_number,
-                            'Particle':particles,
-                            'X':x,
-                            'Y':y,
-                            'Z':z,
-                            'Azimuth':az,
-                            'Heat':heat,
-                            'Error':error})
+        add = pd.DataFrame({'Region': region_number,
+                            'Particle': particles,
+                            'X': x,
+                            'Y': y,
+                            'Z': z,
+                            'Azimuth': az,
+                            'Heat': heat,
+                            'Error': error})
         try:
             self.data_frame = pd.concat([self.data_frame,add]).reset_index(drop=True)
         except:
