@@ -1,9 +1,4 @@
-.. toctree::
-   :maxdepth: 2
-
-   Installation
-   Support
-
+{%extends "base.rst"%}
 $project
 ========
 
