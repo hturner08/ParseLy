@@ -8,4 +8,4 @@
 *.pyc
 ParseLy.egg-info
 *.gz
-_build
+**\_build
