@@ -7,7 +7,7 @@ Besides installing VisIT, sure you are running an environment with python 2.7. T
 Or
 [Download Miniconda](https://docs.conda.io/en/latest/miniconda.html)
 [Instructions](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/) for creating environment using Anaconda/Miniconda. Reminder: To activate environment type `conda activate envname`.
-You must also add VisIt to your path "C:\Program Files\LLNL\VisIt 3.0.0". 
+You must also add VisIt to your system environment path variable "C:\Program Files\LLNL\VisIt 3.0.0".
 
 ###Installing PyvisFile
 If you are somehow trying to run this package on MacOs or Linux. Follow the instrucitons at this [link](https://mathema.tician.de/software/pyvisfile/)

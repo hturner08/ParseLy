@@ -2,8 +2,8 @@ import argparse
 import time
 import sys
 for pth in sys.path:
-    if pth.contains("VisIt")
-    sys.path.append(r"pth\lib\site-packages")
+    if "VisIt" in pth:
+        sys.path.append(r"pth\lib\site-packages")
 sys.path.append('..')
 from src.MParser import *
 #####################
