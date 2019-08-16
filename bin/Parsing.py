@@ -1,11 +1,9 @@
 import argparse
-import numpy as np
-import pandas as pd
-import math
 import time
-import csv
 import sys
-sys.path.append(r"C:\Program Files\LLNL\VisIt 3.0.0\lib\site-packages")
+for pth in sys.path:
+    if pth.contains("VisIt")
+    sys.path.append(r"pth\lib\site-packages")
 sys.path.append('..')
 from src.MParser import *
 #####################

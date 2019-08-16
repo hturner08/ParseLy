@@ -1,3 +1,13 @@
+.. toctree::
+   :maxdepth: 4
+   :hidden:
+
+   Installation
+   Usage
+   Support
+
+
+
 Parsely
 ========
 
