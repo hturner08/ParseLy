@@ -12,6 +12,7 @@ class Plotter:
         else:
             visit.OpenDatabase(paths)
     def scatterPlot(self,coords=["var00","var01","var02","var03"],colorTable="hot",pixelSize = 5,stay=False):
+        visit.AddWindow()
         if len(visit.ListPlots()) > 0:
             visit.SetActivePlots(0)
             visit.HideActivePlots()
@@ -44,7 +45,15 @@ class Plotter:
         time.sleep(5)
         return visit.SaveWindow()
         return visit.SaveWindow()
-    def surfacePlot(self,stay=False,samples = 100, contours=50):
+        
+    def pseudocolorPlot(self):
+        visit.AddWindow()
+
+    def resamplePlot(self):
+        visit.AddWindow()
+
+    def isosurfacePlot(self,stay=False,samples = 100, contours=50):
+        visit.AddWindow()
         returned = []
         if len(visit.ListPlots()) > 0:
             visit.SetActivePlots(0)
