@@ -5,4 +5,4 @@ Parsely is library for parsing meshtal files outputed by MCNP and visualizing th
 data in VisIt.
 
 ## Documentation
-Documentation can be found [here](parsely.readthedocs.io/en/latest)
+Documentation can be found [here](https://parsely.readthedocs.io/en/latest/index.html)
