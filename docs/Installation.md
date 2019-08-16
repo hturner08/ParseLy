@@ -9,7 +9,7 @@ Or
 [Instructions](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/) for creating environment using Anaconda/Miniconda. Reminder: To activate environment type `conda activate envname`.
 You must also add VisIt to your system environment path variable "C:\Program Files\LLNL\VisIt 3.0.0".
 
-###Installing PyvisFile
+### Installing PyvisFile
 If you are somehow trying to run this package on MacOs or Linux. Follow the instrucitons at this [link](https://mathema.tician.de/software/pyvisfile/)
 However, on Windows, we will need to improvise slightly.
 (Work In Progress)
@@ -29,9 +29,3 @@ Install the dependencies
 Build and install the library
 
     pip install /path/to/Parsely
-
-## Usage
-You can now use and run the scripts found in the bin folder `cd bin`. Run `python <script_name> -h` for more instructions on each script.
-
-## Documentation
-Documentation can be found [here](https://github.com/hturner08)
