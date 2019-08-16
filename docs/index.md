@@ -1,10 +1,3 @@
-.. .. toctree::
-..    :maxdepth: 3
-..
-..    Installation
-..    Support
-..
-
 Parsely
 ========
 
