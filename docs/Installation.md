@@ -1,14 +1,19 @@
-## Installation Instructions
-### Pre-installation
+# Installation Instructions
+## Pre-installation
+### Setting up environment
 Besides installing VisIT, sure you are running an environment with python 2.7. The VisIt library is not compatible with Python 3.
-
-[Downloading Anaconda](https://www.anaconda.com/distribution/)
+[Download VisIt](https://wci.llnl.gov/simulation/computer-codes/visit/executables)
+[Download Anaconda](https://www.anaconda.com/distribution/)
 Or
 [Download Miniconda](https://docs.conda.io/en/latest/miniconda.html)
+[Instructions](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/) for creating environment using Anaconda/Miniconda. Reminder: To activate environment type `conda activate envname`.
 
-[Instructions](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/) for creating environment using Anaconda/Miniconda. Reminder: To activate environment type `activate envname`.
+###Installing PyvisFile
+If you are somehow trying to run this package on MacOs or Linux. Follow the instrucitons at this [link](https://mathema.tician.de/software/pyvisfile/)
+However, on Windows, we will need to improvise slightly.
+(Work In Progress)
 
-### Building ParseLy
+## Building ParseLy
 
 Clone the library and navigate to the folder
 

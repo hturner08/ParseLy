@@ -1,3 +1,10 @@
+.. .. toctree::
+..    :maxdepth: 3
+..
+..    Installation
+..    Support
+..
+
 Parsely
 ========
 
@@ -12,8 +19,8 @@ Features
 Contribute
 ----------
 
-- Issue Tracker: github.com/$project/$project/issues
-- Source Code: github.com/$project/$project
+- Issue Tracker: github.com/hturner08/Parsely/issues
+- Source Code: github.com/hturner08/Parsely
 
 License
 -------
