@@ -44,10 +44,18 @@ class Plotter:
         count = 0
         time.sleep(5)
         return visit.SaveWindow()
-        return visit.SaveWindow()
-        
+
     def pseudocolorPlot(self):
         visit.AddWindow()
+        returned = []
+        if len(visit.ListPlots()) > 0:
+            visit.SetActivePlots(0)
+            visit.HideActivePlots()
+        p = visit.PseudocolorAttributes()
+        plot = visit.AddPlot("Pseudocolor","Heat")
+        visit.SetPlotOptions(p)
+        visit.DrawPlots()
+        return visit.SaveWindow()
 
     def resamplePlot(self):
         visit.AddWindow()
