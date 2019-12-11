@@ -4,7 +4,7 @@ First, navigate to the bin folder, which contains the python scripts we'll be us
 Below is an example run:
 
     cd bin
-    python Parsing.py -f "../Examples/Para-13.mt" -o "outputted.txt"
+    python Parsing.py -f "../Examples/Para-013.mt" -o "outputted.txt"
     python Plotting.py -f "./outputted.3D"
 
 ## Editing Scripts
